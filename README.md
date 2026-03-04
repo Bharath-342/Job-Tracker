@@ -1,5 +1,12 @@
 ## Live Demo:
 https://job-tracker-delta-eight.vercel.app/
+if you want to check it works 
+{
+"Email":"user2@gmail.com",
+"password":"222222"
+}
+just for checking purpose only use it 
+
 
 
 
