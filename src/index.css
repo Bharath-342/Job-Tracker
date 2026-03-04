@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global gradient background */
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #eef2ff 0%,
+    #e0f2fe 30%,
+    #fdf4ff 60%,
+    #f0fdf4 100%
+  );
+  background-attachment: fixed;
+}
+
+/* optional subtle glow layers */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  filter: blur(120px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  top: -100px;
+  left: -100px;
+  background: #6366f1;
+}
+
+body::after {
+  bottom: -120px;
+  right: -120px;
+  background: #22c55e;
+}
