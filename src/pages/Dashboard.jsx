@@ -53,25 +53,43 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen relative p-8 z-10">
+    <div className="min-h-screen relative overflow-hidden
+    bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900
+    p-8">
 
       <AnimatedBackground type="blobs" />
 
-      <div className="max-w-7xl mx-auto">
+      {/* overlay blur layer */}
+      <div className="absolute inset-0 backdrop-blur-[120px] opacity-40"></div>
 
-        {/* Export Button */}
-        <div className="flex justify-end mb-4">
+      <div className="relative max-w-7xl mx-auto">
+
+        {/* HEADER */}
+        <div className="flex justify-between items-center mb-10">
+
+          <h1 className="text-3xl md:text-4xl font-bold
+          bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400
+          bg-clip-text text-transparent">
+            Job Application Dashboard
+          </h1>
+
           <button
             onClick={exportCSV}
-            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+            className="px-6 py-3 rounded-xl font-semibold
+            text-white
+            bg-gradient-to-r from-emerald-500 to-green-600
+            shadow-lg shadow-emerald-500/30
+            hover:scale-105 hover:shadow-xl
+            transition-all duration-300"
           >
             Export Applications
           </button>
+
         </div>
 
         <ApplyForm />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
 
           <StatCard label="Total" value={stats.total} />
           <StatCard label="Applied" value={stats.applied} />
@@ -90,14 +108,55 @@ function Dashboard() {
 }
 
 function StatCard({ label, value }) {
+
+  const styles = {
+    Total: "from-slate-500 to-slate-700 border-slate-400/40 shadow-slate-500/30",
+    Applied: "from-blue-500 to-cyan-500 border-blue-400/40 shadow-blue-500/30",
+    Interview: "from-purple-500 to-fuchsia-500 border-purple-400/40 shadow-purple-500/30",
+    Offer: "from-emerald-500 to-green-500 border-emerald-400/40 shadow-emerald-500/30",
+    Rejected: "from-rose-500 to-red-500 border-rose-400/40 shadow-rose-500/30",
+    "Success %": "from-yellow-400 to-orange-500 border-yellow-300/40 shadow-yellow-400/30"
+  };
+
+  const style = styles[label] || styles.Total;
+
   return (
-    <div className="bg-white/70 backdrop-blur-lg border border-white/40 shadow-xl rounded-2xl p-5 text-center transition transform hover:-translate-y-1 hover:shadow-2xl">
-      <p className="text-xs text-slate-500 uppercase tracking-wider">
+    <div
+      key={value}
+      className={`
+      relative overflow-hidden
+      bg-white/20 backdrop-blur-xl
+      border ${style.split(" ")[2]}
+      rounded-2xl p-6
+      text-center
+      shadow-lg ${style.split(" ")[3]}
+      transition-all duration-500
+      animate-[pulse_0.6s_ease]
+      `}
+    >
+
+      {/* gradient glow layer */}
+      <div
+        className={`
+        absolute inset-0 opacity-25
+        bg-gradient-to-br ${style.split(" ")[0]} ${style.split(" ")[1]}
+        `}
+      ></div>
+
+      <p className="relative text-xs text-gray-200 uppercase tracking-widest">
         {label}
       </p>
-      <p className="text-2xl font-bold text-slate-800 mt-2">
+
+      <p
+        className={`
+        relative text-3xl font-bold mt-2
+        bg-gradient-to-r ${style.split(" ")[0]} ${style.split(" ")[1]}
+        bg-clip-text text-transparent
+        `}
+      >
         {value}
       </p>
+
     </div>
   );
 }
