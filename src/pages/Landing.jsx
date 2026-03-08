@@ -21,7 +21,9 @@ function Landing() {
       <p className="mt-6 text-lg text-slate-600 max-w-xl">
         Track your job applications efficiently. Organize companies,
         manage interview pipelines, and analyze your success rate
-        with powerful visual analytics.
+        with powerful visual analytics.We support over 500 companies, 
+        including top tech giants and startups, to help you stay organized and
+         informed throughout your job search journey.
       </p>
 
       <button
